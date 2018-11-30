@@ -1,6 +1,21 @@
 // Parsing Valid Characters
 function parseValidChar(input) {
-  // This is a stub
+  const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+
+  let char = input[0];
+  let returnObject = {
+    type: null,
+    value: null,
+    rest: input
+  }
+
+  if (LETTERS.includes(char)) {
+    returnObject.type = "char";
+    returnObject.value = char;
+    returnObject.rest = input.slice(1);
+  }
+
+  return returnObject;
 }
 
 // Parsing digits
