@@ -20,12 +20,47 @@ function parseValidChar(input) {
 
 // Parsing digits
 function parseDigit(input) {
-  // This is a stub
+  let returnObject = {
+    type: null,
+    value: null,
+    rest: input
+  }
+
+  let digit = input[0];
+
+  const DIGITS = "0123456789";
+
+  if (DIGITS.includes(digit)) {
+    returnObject.type = "digit";
+    returnObject.value = digit;
+    returnObject.rest = input.slice(1);
+  }
+
+  return returnObject;
 }
 
 // Parsing numbers
 function parseNumber(input) {
-  // This is a stub
+  let strNum = "";
+  let returnObject = {
+    type: null,
+    value: null,
+    rest: input
+  }
+
+  let digit = parseDigit(input);
+  if (digit.type !== null) {
+    returnObject.type = "number";
+    while (digit.type !== null) {
+      strNum += digit.value;
+      digit = parseDigit(digit.rest);
+    }
+
+    returnObject.value = Number(strNum);
+    returnObject.rest = digit.rest;
+  }
+
+  return returnObject;
 }
 
 // Parsing Declaration
